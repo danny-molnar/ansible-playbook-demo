@@ -43,13 +43,23 @@
         state: link
       notify: Restart Nginx
 
-    # This section is commented out because the ufw module doesn't work on Amazon Linux
-    # Looking into alternatives at the moment...
-    # - name: Allow all access to tcp port 80
-    #   ufw:
-    #     rule: allow
-    #     port: '80'
-    #     proto: tcp
+    - name: Enabling epel
+      shell: "amazon-linux-extras enable epel"
+
+    - name: Installing epel-release
+      shell: "sudo yum install epel-release"
+
+    - name: Installing ufw
+      shell: "sudo yum install ufw"
+
+    - name: Enabling ufw
+      shell: "sudo ufw --force enable"
+
+    - name: Allow all access to tcp port 80
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
 
   handlers:
     - name: Restart Nginx
