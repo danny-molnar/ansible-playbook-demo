@@ -4,7 +4,7 @@
   vars:
     document_root: /var/www
     app_root: html_demo_site-main
-    server_name: "54.229.175.209"
+    server_name: "3.250.162.241"
   tasks:
     - name: Enabling nginx1 package in Amazon Linux Extras
       shell: "amazon-linux-extras enable nginx1"
@@ -43,7 +43,6 @@
         state: link
       notify: Restart Nginx
 
-  # For some reason, the below handler won't fire
   handlers:
     - name: Restart Nginx
       service:
