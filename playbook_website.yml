@@ -43,24 +43,6 @@
         state: link
       notify: Restart Nginx
 
-    - name: Enabling epel
-      shell: "amazon-linux-extras enable epel"
-
-    - name: Installing epel-release
-      shell: "sudo yum install epel-release"
-
-    - name: Installing ufw
-      shell: "sudo yum install ufw"
-
-    - name: Enabling ufw
-      shell: "sudo ufw --force enable"
-
-    - name: Allow all access to tcp port 80
-      ufw:
-        rule: allow
-        port: '80'
-        proto: tcp
-
   # For some reason, the below handler won't fire
   handlers:
     - name: Restart Nginx
