@@ -6,6 +6,9 @@
     app_root: html_demo_site-main
     server_name: "52.17.162.247"
   tasks:
+    - name: Enabling nginx1 package in Amazon Linux Extras
+      shell: "amazon-linux-extras enable nginx1"
+
     - name: Installing nginx
       yum: 
         name: nginx
@@ -40,6 +43,8 @@
         state: link
       notify: Restart Nginx
 
+    # This section is commented out because the ufw module doesn't work on Amazon Linux
+    # Looking into alternatives at the moment...
     # - name: Allow all access to tcp port 80
     #   ufw:
     #     rule: allow
